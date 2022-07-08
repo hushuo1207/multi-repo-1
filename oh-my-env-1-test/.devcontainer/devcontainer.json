@@ -1,0 +1,35 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.194.0/containers/docker-existing-dockerfile
+{
+	"name": "OhMyEnv",
+	"context": "..",
+	"dockerFile": "./Dockerfile",
+	"settings": {},
+	"extensions": [
+		"golang.go",
+		"dbaeumer.vscode-eslint",
+		"asvetliakov.vscode-neovim",
+		"esbenp.prettier-vscode"
+	],
+	"runArgs": [
+		"--network=network1",
+		"--dns=114.114.114.114",
+		"--privileged",
+	],
+	"mounts": [
+		"source=root,target=/root,type=volume",
+		"source=chezmoi,target=/root/.local/share/chezmoi,type=volume",
+		"source=repos,target=/root/repos,type=volume",
+		"source=vscode-extensions,target=/root/.vscode-server/extensions,type=volume",
+		"source=go-bin,target=/root/go/bin,type=volume",
+		"source=docker,target=/var/lib/docker,type=volume",
+		"source=pnpm-global,target=/usr/pnpm-global,type=volume",
+		"source=gems,target=/usr/local/rvm/gems,type=volume",
+	],
+	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "root",
+	// "overrideCommand": false,
+	// "forwardPorts": [],
+	// "postCreateCommand": "apt-get update && apt-get install -y curl",
+	// "postStartCommand": "rm /var/run/docker.pid; /usr/sbin/dockerd & /usr/sbin/sshd -D"
+}
